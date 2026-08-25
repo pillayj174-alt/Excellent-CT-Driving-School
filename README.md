@@ -1,16 +1,25 @@
-# Exact Footer Contact Update
+# Excellent CT Driving School Website
 
-This patch changes ONLY the bottom footer Contact text.
+A static, responsive website for Excellent CT Driving School, Eden Park, Alberton, Gauteng.
 
-It changes:
-- `071 666 8493` → `Phone Number: 071 666 8493`
-- `emindeklerk05@gmail.com` → `Email: emindeklerk05@gmail.com`
+## Included
+- Responsive HTML/CSS/JavaScript
+- WhatsApp booking CTAs using 071 666 8493
+- Email contact: emindeklerk05@gmail.com
+- Pricing:
+  - Learners Licence — R1,800 (Guarantee Pass)
+  - Drivers Licence — R4,500
+  - Drivers Licence (Truck Hire) — R3,800
+- Responsive navigation
+- Animated hero
+- Pricing, services, FAQ and enquiry form
+- GitHub Pages compatible
 
-Everything else remains unchanged.
+## Deploy to GitHub Pages
+1. Create a new GitHub repository.
+2. Upload `index.html`, `styles.css`, and `script.js`.
+3. Commit the files to the `main` branch.
+4. In GitHub: Settings → Pages → Deploy from a branch → `main` / root.
+5. Save and open the generated GitHub Pages URL.
 
-## Manual GitHub edit
-Open `index.html` in the repository and replace the footer Contact line with:
-
-```html
-<div><h4>Contact</h4><a href="https://wa.me/27716668493" target="_blank" rel="noopener">Phone Number: 071 666 8493</a><a href="mailto:emindeklerk05@gmail.com">Email: emindeklerk05@gmail.com</a><p>107 Ext 4 Lambretta Street<br>Eden Park, Alberton<br>Gauteng, 1458</p></div>
-```
+No build process is required.
