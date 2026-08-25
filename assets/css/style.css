@@ -2,3 +2,51 @@
 @media(max-width:900px){.topbar{display:none}.nav{height:72px}.logo b{font-size:18px}.logo em{font-size:9px;letter-spacing:3px}.logo-shield{width:56px;height:51px}.menu{display:block}.nav nav{display:none;position:absolute;top:72px;left:0;right:0;background:#2d0000;padding:15px 6%;flex-direction:column;align-items:stretch;gap:0}.nav nav.open{display:flex}.nav nav a{padding:13px 0}.nav nav a.active:after{display:none}.nav-btn{padding:14px!important}.hero{height:690px}.hero-content{padding:65px 6% 0}.hero h1{font-size:46px}.trust{gap:18px;flex-wrap:wrap}.trust div{min-width:135px}.driving-car{bottom:105px;transform:scale(.72);transform-origin:left bottom}.contact-strip{margin:-30px 5% 0;grid-template-columns:1fr}.contact-strip>a{border-right:0;border-bottom:1px solid #333}.about-grid,.service-grid,.price-grid,.timeline{grid-template-columns:1fr}.price-grid article.popular{transform:none}.price-grid article.popular:hover{transform:translateY(-8px)}.timeline:before{display:none}.booking,.contact{grid-template-columns:1fr}.contact-details{grid-template-columns:1fr}.contact-details p:first-child{grid-column:auto}.mobile-actions{position:fixed;display:grid;grid-template-columns:repeat(3,1fr);bottom:0;left:0;right:0;background:#070707;color:#fff;z-index:80;padding-bottom:env(safe-area-inset-bottom)}.mobile-actions a{text-align:center;padding:12px;font-size:12px;font-weight:900;border-right:1px solid #333}.section,.services,.how,.booking,.contact{padding-left:6%;padding-right:6%}}
 @media(max-width:520px){.hero h1{font-size:39px}.hero p{font-size:16px}.hero-buttons{flex-direction:column;align-items:flex-start}.trust{margin-top:25px}.driving-car{transform:scale(.55)}.contact-strip>a{padding:20px}.booking form{grid-template-columns:1fr}.wide{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
+
+/* ===== EXACT GENERATED HERO REFERENCE ===== */
+.hero{
+  background:#050608 url("../images/hero-exact.png") center top / cover no-repeat !important;
+  min-height:650px;
+  height:650px;
+}
+.hero:before,
+.hero .city{
+  display:none!important;
+}
+.hero-content{
+  /* The reference image already contains the finished hero typography and CTAs.
+     Keep the functional DOM in place without visually duplicating it. */
+  opacity:0!important;
+  pointer-events:none!important;
+}
+.hero-buttons,.trust{visibility:hidden!important}
+.road,.driving-car{
+  display:none!important;
+}
+@media(max-width:900px){
+  .hero{
+    min-height:560px;
+    height:560px;
+    background-position:center top!important;
+  }
+}
+@media(max-width:600px){
+  .hero{
+    min-height:470px;
+    height:470px;
+    background-size:auto 100%!important;
+    background-position:center top!important;
+  }
+}
+
+.hero{position:relative}
+.hero-hotspots{position:absolute;inset:0;z-index:30;pointer-events:none}
+.hero-hotspots .hotspot{position:absolute;display:block;pointer-events:auto}
+.hero-hotspots .book{left:3.7%;top:58%;width:17%;height:9%}
+.hero-hotspots .whatsapp{left:20.5%;top:58%;width:14%;height:9%}
+.hero-hotspots .navbook{right:2.8%;top:7%;width:12%;height:9%}
+@media(max-width:900px){
+  .hero-hotspots .book{left:4%;top:62%;width:28%;height:10%}
+  .hero-hotspots .whatsapp{left:34%;top:62%;width:25%;height:10%}
+  .hero-hotspots .navbook{right:4%;top:5%;width:25%;height:10%}
+}
