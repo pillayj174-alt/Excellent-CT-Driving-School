@@ -1,26 +1,32 @@
-# Excellent CT Driving School — Corporate Atmosphere
+# Excellent CT Driving School — GitHub Website
 
-GitHub-ready website using the **user-provided Hero image exactly as supplied**. No new generated pictures are included.
-
-## Contact
-WhatsApp: 071 666 8493
-Email: emindeklerk05@gmail.com
-Address: 107 Ext 4 Lambretta Street, Eden Park, Alberton, Gauteng, 1458, South Africa
-
-## Pricing
-Driver's Licence — R4,500
-Learner's Licence (Guarantee Pass) — R1,800
-Driver's Licence (Truck Hire) — R3,800
+A dark, animated, GitHub Pages-ready website for Excellent CT Driving School.
 
 ## Features
-- Uploaded Hero image used as the Hero visual
-- Matching dark / black / red atmosphere across the site
-- Professional corporate typography and cards
-- Scroll-reveal animations
-- Moving road-light effect in Hero
-- Responsive layout
-- WhatsApp enquiry form
-- Phone, email and WhatsApp links
+- Animated driving-school hero section
+- CSS-only car driving/road animation
+- Flowing scroll reveal animations
+- Scroll progress indicator
+- Responsive dark premium design
+- Working WhatsApp links
+- Working email links
+- Functional enquiry form that opens WhatsApp with the enquiry pre-filled
+- Pricing cards
+- FAQ accordion
+- Mobile sticky contact bar
+- Google Maps directions
+- SEO metadata
+- Reduced-motion accessibility support
+
+## Contact
+- WhatsApp: 071 666 8493
+- Email: emindeklerk05@gmail.com
+- Address: 107 Ext 4 Lambretta Street, Eden Park, Alberton, Gauteng, 1458, South Africa
+
+## Pricing
+- Driver's Licence: R4,500
+- Learner's Licence: R1,800 — Guarantee Pass
+- Driver's Licence + Truck Hire: R3,800
 
 ## GitHub Pages
-Upload the files to your repository and enable GitHub Pages from the main branch/root.
+Upload the entire repository, preserving the `assets/css` and `assets/js` folders. Then enable GitHub Pages from **Settings → Pages → Deploy from a branch → main → / (root)**.
