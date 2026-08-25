@@ -19,3 +19,8 @@ form?.addEventListener('submit',e=>{
 
 // Premium scroll-flow animation + page progress
 const progress=document.querySelector(".scroll-progress");const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -60px 0px"});document.querySelectorAll(".reveal,.stagger").forEach(e=>observer.observe(e));function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?scrollY/max*100:0)+"%"}addEventListener("scroll",updateProgress,{passive:true});updateProgress();
+
+const heroScene=document.querySelector('.hero-scene');
+if(heroScene && matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+ window.addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;heroScene.style.transform=`translate3d(${x*10}px,${y*5}px,0)`},{passive:true});
+}
