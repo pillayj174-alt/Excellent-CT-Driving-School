@@ -65,3 +65,152 @@ body{overflow-x:hidden}
   .hero-car,.wheel,.hero-road{animation:none!important}
   .reveal{opacity:1!important;transform:none!important}
 }
+
+/* ===== HIGH-VISIBILITY HERO CAR ===== */
+.hero{isolation:isolate}
+.hero-car{
+  display:block!important;
+  position:absolute!important;
+  z-index:8!important;
+  left:-520px!important;
+  right:auto!important;
+  bottom:9%!important;
+  width:430px!important;
+  height:180px!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:none!important;
+  animation:heroDriveAcross 8s linear infinite!important;
+}
+.car{
+  position:absolute;
+  left:20px;
+  bottom:35px;
+  width:350px;
+  height:90px;
+  background:linear-gradient(180deg,#ff3a4c 0%,#d51428 55%,#920b18 100%);
+  border-radius:42px 70px 22px 20px;
+  border:3px solid rgba(255,255,255,.35);
+  box-shadow:0 12px 35px rgba(0,0,0,.65),0 0 35px rgba(226,29,47,.3);
+}
+.car:before{
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:45px;
+  width:18px;
+  height:22px;
+  background:#760814;
+  border-radius:5px 0 0 8px;
+}
+.car-cabin{
+  position:absolute;
+  left:92px;
+  top:-62px;
+  width:190px;
+  height:70px;
+  background:linear-gradient(145deg,#e6293b,#a20e1c);
+  border-radius:80px 95px 8px 8px;
+  transform:skewX(-7deg);
+  border:3px solid rgba(255,255,255,.3);
+}
+.car-window{
+  position:absolute;
+  top:-48px;
+  height:44px;
+  background:linear-gradient(145deg,#38505d,#101a21 70%);
+  border:2px solid rgba(255,255,255,.25);
+  z-index:2;
+}
+.window-a{
+  left:119px;
+  width:73px;
+  transform:skewX(8deg);
+  border-radius:35px 4px 2px 2px;
+}
+.window-b{
+  left:197px;
+  width:61px;
+  transform:skewX(-6deg);
+  border-radius:4px 35px 2px 2px;
+}
+.headlight,.taillight{
+  position:absolute;
+  top:27px;
+  width:19px;
+  height:12px;
+  border-radius:8px;
+  z-index:3;
+}
+.headlight{
+  right:8px;
+  background:#fff5bd;
+  box-shadow:0 0 22px 8px rgba(255,245,189,.45);
+}
+.taillight{
+  left:8px;
+  background:#ff1832;
+  box-shadow:0 0 16px 5px rgba(255,24,50,.5);
+}
+.wheel{
+  position:absolute;
+  bottom:-28px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#090909;
+  border:9px solid #242424;
+  box-shadow:inset 0 0 0 5px #050505;
+  animation:wheelRoll .55s linear infinite;
+}
+.wheel span{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#777;
+  transform:translate(-50%,-50%);
+}
+.wheel-a{left:57px}.wheel-b{right:48px}
+.car-shadow{
+  position:absolute;
+  left:20px;
+  bottom:17px;
+  width:360px;
+  height:25px;
+  border-radius:50%;
+  background:rgba(0,0,0,.65);
+  filter:blur(8px);
+}
+@keyframes heroDriveAcross{
+  0%{left:-520px;transform:scale(.88)}
+  8%{transform:scale(1)}
+  46%{left:42%;transform:scale(1)}
+  54%{left:52%;transform:scale(1)}
+  92%{left:110%;transform:scale(1)}
+  100%{left:calc(100% + 520px);transform:scale(.92)}
+}
+@keyframes wheelRoll{to{transform:rotate(360deg)}}
+@media(max-width:850px){
+  .hero-car{
+    left:-430px!important;
+    bottom:7%!important;
+    width:350px!important;
+    transform:scale(.82);
+  }
+  .hero-content{padding-bottom:170px!important}
+  @keyframes heroDriveAcross{
+    0%{left:-430px;transform:scale(.72)}
+    8%{transform:scale(.82)}
+    48%{left:35%;transform:scale(.82)}
+    55%{left:45%;transform:scale(.82)}
+    92%{left:100%;transform:scale(.82)}
+    100%{left:calc(100% + 430px);transform:scale(.72)}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-car{animation:none!important;left:50%!important;transform:translateX(-50%) scale(.9)!important}
+  .wheel{animation:none!important}
+}
