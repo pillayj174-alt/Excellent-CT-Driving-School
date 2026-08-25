@@ -1,3 +1,7 @@
-const menu=document.querySelector('.menu-toggle');const nav=document.querySelector('#main-nav');menu?.addEventListener('click',()=>nav.classList.toggle('open'));nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-document.querySelector('#enquiry-form')?.addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);const msg=`Hi Excellent CT Driving School. My name is ${f.get('name')}.%0A%0AInterested in: ${f.get('interest')}%0AWhatsApp/Phone: ${f.get('phone')}%0AEmail: ${f.get('email')||'Not provided'}%0A%0AMessage: ${f.get('message')||'No additional message.'}`;window.open(`https://wa.me/27716668493?text=${msg}`,'_blank');});
+const header=document.getElementById('site-header');const toggle=document.querySelector('.menu-toggle');const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>30),{passive:true});
+toggle?.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open)});
+document.querySelectorAll('#main-nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle?.setAttribute('aria-expanded','false')}));
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12,rootMargin:'0px 0px -40px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.getElementById('enquiry-form')?.addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);const message=`Hi Excellent CT Driving School.\n\nName: ${f.get('name')}\nPhone: ${f.get('phone')}\nEmail: ${f.get('email')||'Not provided'}\nInterested in: ${f.get('interest')}\nMessage: ${f.get('message')||'No additional message.'}`;window.open(`https://wa.me/27716668493?text=${encodeURIComponent(message)}`,'_blank')});
