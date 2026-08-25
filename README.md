@@ -1,16 +1,6 @@
-# Excellent CT Driving School — Corporate Edition
+# Excellent CT Driving School — Corporate Atmosphere
 
-A premium, corporate-style GitHub Pages website for Excellent CT Driving School.
-
-## Design direction
-- Dark cinematic, photorealistic Hero
-- Corporate black / white / red palette
-- Restrained typography and spacing
-- Professional service and pricing presentation
-- Scroll reveal animations and subtle interactions
-- Sticky navigation and responsive mobile layout
-- Functional WhatsApp booking flow
-- Direct email and phone actions
+GitHub-ready website using the **user-provided Hero image exactly as supplied**. No new generated pictures are included.
 
 ## Contact
 WhatsApp: 071 666 8493
@@ -22,5 +12,15 @@ Driver's Licence — R4,500
 Learner's Licence (Guarantee Pass) — R1,800
 Driver's Licence (Truck Hire) — R3,800
 
+## Features
+- Uploaded Hero image used as the Hero visual
+- Matching dark / black / red atmosphere across the site
+- Professional corporate typography and cards
+- Scroll-reveal animations
+- Moving road-light effect in Hero
+- Responsive layout
+- WhatsApp enquiry form
+- Phone, email and WhatsApp links
+
 ## GitHub Pages
-Upload the contents to a GitHub repository, then enable Settings → Pages → Deploy from branch → main → /(root).
+Upload the files to your repository and enable GitHub Pages from the main branch/root.
