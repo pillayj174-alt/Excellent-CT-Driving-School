@@ -1,14 +1,33 @@
-Excellent CT Driving School — Hero V2
+Excellent CT Driving School — Services & Pricing V3
 
-Replace index.html, styles.css and script.js in the repository root.
-Copy assets/images/hero-driving.jpg into assets/images/.
+Services:
+- Learner's Licence
+- Driver's Licence (Code 08 / 10)
+- Driving Lessons
+- Roadworthy
+- Licence Disk Renewal
+- Truck Licence Disk Payment Plan
 
-This version adds:
-- A realistic, cinematic dark hero section.
-- Rich Cormorant Garamond + Manrope typography.
-- Gold/black premium visual system.
-- Scroll-down cue and curved hero transition.
-- IntersectionObserver reveal animations throughout the page.
-- Staggered card/step animations.
-- Mobile navigation.
-- Existing WhatsApp enquiry workflow.
+Pricing:
+- Learner's Licence — R1,800
+- Code 14 Learner's Licence — R2,500
+- Motorbike Learner's Licence — R2,300
+- Truck Hire — R1,500
+- Code 08 / 10 Driver's Licence — WhatsApp for enquiry
+- Driving Lessons — WhatsApp for enquiry
+- Roadworthy — WhatsApp for enquiry
+- Licence Disk Renewal — WhatsApp for enquiry
+- Truck Licence Disk Payment Plan — WhatsApp for enquiry
+
+
+V4 — Licence Departments:
+- Alberton Licence Department
+- Boksburg Licence Department
+- Meyerton Licence Department
+- Vereeniging Licence Department
+- Xavier Junction Licence Department
+- Langlaagte Licence Department
+- Randdfontien Licence Department
+- Mapopane Licence Department
+- Added an "Inquire if you don't see your home town" WhatsApp CTA.
+- Added Licence Departments to the main navigation.
