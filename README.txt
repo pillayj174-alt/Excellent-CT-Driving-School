@@ -41,3 +41,9 @@ OWNER PORTAL — TESTING
 - Export Bookings downloads a CSV from the browser.
 
 IMPORTANT: This GitHub Pages version uses browser localStorage/sessionStorage so it can be tested without a backend. It is NOT production-grade authentication or a shared database: data is browser-specific and the login credentials are present in client-side JavaScript. For a real public owner system, connect the dashboard to a backend/auth service (e.g. Supabase/Firebase) before using it for live customer data.
+
+
+Owner Login flow V6.1:
+- admin.html is the login page.
+- Successful login redirects automatically to owner.html.
+- Direct access to owner.html requires an active owner session; otherwise it redirects back to admin.html.
