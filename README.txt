@@ -22,3 +22,12 @@ ONLINE FLOW:
 - Public site only displays approved reviews.
 
 The existing dark Hero, services, pricing, licence departments, Boksburg location, email, WhatsApp CTAs and animations are retained.
+
+
+V7.1 restoration notes:
+- Restores/retains the full public website: premium dark hero, Boksburg location, services, pricing, licence departments, FAQs, reviews, contact section and WhatsApp CTAs.
+- Retains the Supabase online bookings/reviews integration.
+- Retains the Owner Login and Owner Dashboard.
+- Owner access is restricted in the frontend to emim05@gmail.com, with database policies also restricted to that email.
+- Supabase client configuration contains only the project URL and publishable key. Never place the Supabase secret key in this repository.
+- Updated old FAQ pricing that referenced R4,500/R3,800 so it no longer conflicts with the current pricing.

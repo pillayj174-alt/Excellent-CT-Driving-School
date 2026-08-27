@@ -12,6 +12,7 @@ async function guard(){
   const {data}=await supa.auth.getSession();
   const onOwner=/owner\.html$/.test(location.pathname);
   if(onOwner && !data.session){location.replace('admin.html');return false;}
+  if(data.session && data.session.user?.email?.toLowerCase()!==OWNER_EMAIL){await supa.auth.signOut(); if(onOwner){location.replace('admin.html');return false;} return true;}
   if(!onOwner && data.session){location.replace('owner.html');return false;}
   return true;
 }
