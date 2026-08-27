@@ -1,56 +1,20 @@
 const OWNER_EMAIL='emim05@gmail.com';
-const supa=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);
+const OWNER_PASSWORD='emimect05';
+const KEYS={bookings:'ect_bookings',reviews:'ect_reviews',settings:'ect_settings',session:'ect_owner_session'};
+const defaults={location:'Boksburg, Gauteng',email:'emimdeklerk05@gmail.com',whatsapp:'071 666 8493',cta:'Book a Lesson'};
+const get=(k,d=[])=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const login=document.getElementById('login-screen'), dash=document.getElementById('dashboard');
-
-async function showOwner(){
-  if(login) login.hidden=true;
-  if(dash) dash.hidden=false;
-  await render();
-}
-async function guard(){
-  const {data}=await supa.auth.getSession();
-  const onOwner=/owner\.html$/.test(location.pathname);
-  if(onOwner && !data.session){location.replace('admin.html');return false;}
-  if(data.session && data.session.user?.email?.toLowerCase()!==OWNER_EMAIL){await supa.auth.signOut(); if(onOwner){location.replace('admin.html');return false;} return true;}
-  if(!onOwner && data.session){location.replace('owner.html');return false;}
-  return true;
-}
-
-document.getElementById('login-form')?.addEventListener('submit',async e=>{
-  e.preventDefault();
-  const email=document.getElementById('login-email').value.trim().toLowerCase();
-  const pass=document.getElementById('login-password').value;
-  const err=document.getElementById('login-error'); err.textContent='';
-  if(email!==OWNER_EMAIL){err.textContent='Incorrect email or password.';return;}
-  const {error}=await supa.auth.signInWithPassword({email,password:pass});
-  if(error){err.textContent='Incorrect email or password.';return;}
-  location.href='owner.html';
-});
-
-document.getElementById('logout')?.addEventListener('click',async()=>{await supa.auth.signOut();location.href='admin.html'});
-
-async function render(){
-  const [{data:bookings,error:be},{data:reviews,error:re}]=await Promise.all([
-    supa.from('bookings').select('*').order('created_at',{ascending:false}),
-    supa.from('reviews').select('*').order('created_at',{ascending:false})
-  ]);
-  if(be||re){document.getElementById('bookings-list').innerHTML='<div class="empty-state">Could not load online data. Make sure the Supabase tables and policies have been created.</div>';return;}
-  document.getElementById('booking-count').textContent=bookings.length;
-  document.getElementById('review-count').textContent=reviews.filter(r=>r.approved).length;
-  document.getElementById('pending-count').textContent=reviews.filter(r=>!r.approved).length;
-  const bl=document.getElementById('bookings-list');
-  bl.innerHTML=bookings.length?bookings.map(b=>`<article class="admin-item"><div><strong>${esc(b.name)}</strong><span>${esc(b.interest||'General enquiry')} · ${esc(b.phone)}</span><small>${esc(b.email||'No email')} · ${esc(new Date(b.created_at).toLocaleString('en-ZA'))}</small><p>${esc(b.message||'No message')}</p><select class="booking-status" data-id="${b.id}"><option value="new" ${b.status==='new'?'selected':''}>New</option><option value="contacted" ${b.status==='contacted'?'selected':''}>Contacted</option><option value="confirmed" ${b.status==='confirmed'?'selected':''}>Confirmed</option><option value="completed" ${b.status==='completed'?'selected':''}>Completed</option><option value="cancelled" ${b.status==='cancelled'?'selected':''}>Cancelled</option></select></div><button class="danger-btn delete-booking" data-id="${b.id}">Delete</button></article>`).join(''):'<div class="empty-state">No online bookings have been submitted yet.</div>';
-  const rl=document.getElementById('reviews-list');
-  rl.innerHTML=reviews.length?reviews.map(r=>`<article class="admin-item"><div><strong>${esc(r.name)} <span class="stars">${'★'.repeat(Number(r.rating)||0)}</span></strong><span>${esc(r.service||'Customer review')}</span><small>${esc(new Date(r.created_at).toLocaleString('en-ZA'))}</small><p>${esc(r.text)}</p></div><div class="item-actions"><button class="small-btn toggle-review" data-id="${r.id}">${r.approved?'Hide':'Approve'}</button><button class="danger-btn delete-review" data-id="${r.id}">Delete</button></div></article>`).join(''):'<div class="empty-state">No reviews have been submitted yet.</div>';
-  bl.querySelectorAll('.booking-status').forEach(el=>el.onchange=async()=>{await supa.from('bookings').update({status:el.value}).eq('id',el.dataset.id);});
-  bl.querySelectorAll('.delete-booking').forEach(btn=>btn.onclick=async()=>{if(confirm('Delete this booking?')){await supa.from('bookings').delete().eq('id',btn.dataset.id);render()}});
-  rl.querySelectorAll('.toggle-review').forEach(btn=>btn.onclick=async()=>{const r=reviews.find(x=>x.id===btn.dataset.id);await supa.from('reviews').update({approved:!r.approved}).eq('id',r.id);render()});
-  rl.querySelectorAll('.delete-review').forEach(btn=>btn.onclick=async()=>{if(confirm('Delete this review?')){await supa.from('reviews').delete().eq('id',btn.dataset.id);render()}});
-}
-
-document.getElementById('export-bookings')?.addEventListener('click',async()=>{const {data}=await supa.from('bookings').select('*').order('created_at',{ascending:false});const head=['Name','Phone','Email','Interest','Message','Status','Created'];const csv=[head,...(data||[]).map(x=>[x.name,x.phone,x.email,x.interest,x.message,x.status,x.created_at])].map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='excellent-ct-bookings.csv';a.click();});
-
-document.getElementById('site-settings')?.addEventListener('submit',e=>{e.preventDefault();document.getElementById('settings-status').textContent='Business settings are currently managed in the website files.'});
-document.getElementById('clear-data')?.remove();
-(async()=>{if(await guard() && /owner\.html$/.test(location.pathname))showOwner()})();
+function showDash(){if(location.pathname.endsWith('/admin.html')||location.pathname.endsWith('admin.html')){location.href='owner.html';return;}login.hidden=true;dash.hidden=false;render();}
+if(location.pathname.endsWith('/owner.html')||location.pathname.endsWith('owner.html')){if(sessionStorage.getItem(KEYS.session)!=='1'){location.replace('admin.html');}else{showDash();}}else if(sessionStorage.getItem(KEYS.session)==='1'){location.replace('owner.html');}
+document.getElementById('login-form')?.addEventListener('submit',e=>{e.preventDefault();const email=document.getElementById('login-email').value.trim().toLowerCase(),pass=document.getElementById('login-password').value;const err=document.getElementById('login-error');if(email===OWNER_EMAIL&&pass===OWNER_PASSWORD){sessionStorage.setItem(KEYS.session,'1');err.textContent='';showDash()}else err.textContent='Incorrect email or password.'});
+document.getElementById('logout')?.addEventListener('click',()=>{sessionStorage.removeItem(KEYS.session);location.reload()});
+function render(){const bookings=get(KEYS.bookings),reviews=get(KEYS.reviews);document.getElementById('booking-count').textContent=bookings.length;document.getElementById('review-count').textContent=reviews.filter(r=>r.approved).length;document.getElementById('pending-count').textContent=reviews.filter(r=>!r.approved).length;
+const bl=document.getElementById('bookings-list');bl.innerHTML=bookings.length?bookings.slice().reverse().map((b,i)=>`<article class="admin-item"><div><strong>${esc(b.name)}</strong><span>${esc(b.interest)} · ${esc(b.phone)}</span><small>${esc(b.email||'No email')} · ${esc(b.createdAt)}</small><p>${esc(b.message||'No message')}</p></div><button class="danger-btn delete-booking" data-index="${bookings.length-1-i}">Delete</button></article>`).join(''):'<div class="empty-state">No bookings or enquiries have been submitted yet.</div>';
+const rl=document.getElementById('reviews-list');rl.innerHTML=reviews.length?reviews.slice().reverse().map((r,i)=>`<article class="admin-item"><div><strong>${esc(r.name)} <span class="stars">${'★'.repeat(Number(r.rating)||0)}</span></strong><span>${esc(r.service||'Customer review')}</span><small>${esc(r.createdAt)}</small><p>${esc(r.text)}</p></div><div class="item-actions"><button class="small-btn toggle-review" data-index="${reviews.length-1-i}">${r.approved?'Hide':'Approve'}</button><button class="danger-btn delete-review" data-index="${reviews.length-1-i}">Delete</button></div></article>`).join(''):'<div class="empty-state">No reviews have been submitted yet.</div>';
+bl.querySelectorAll('.delete-booking').forEach(b=>b.onclick=()=>{const x=get(KEYS.bookings);x.splice(Number(b.dataset.index),1);save(KEYS.bookings,x);render()});rl.querySelectorAll('.toggle-review').forEach(b=>b.onclick=()=>{const x=get(KEYS.reviews);x[Number(b.dataset.index)].approved=!x[Number(b.dataset.index)].approved;save(KEYS.reviews,x);render()});rl.querySelectorAll('.delete-review').forEach(b=>b.onclick=()=>{const x=get(KEYS.reviews);x.splice(Number(b.dataset.index),1);save(KEYS.reviews,x);render()});
+const s={...defaults,...get(KEYS.settings,{})};Object.entries(s).forEach(([k,v])=>{const el=document.querySelector(`[name="${k}"]`);if(el)el.value=v});}
+document.getElementById('site-settings').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);save(KEYS.settings,Object.fromEntries(f));document.getElementById('settings-status').textContent='Settings saved locally.'});
+document.getElementById('clear-data').onclick=()=>{if(confirm('Reset all test bookings, reviews and site settings on this browser?')){Object.values(KEYS).filter(k=>k!=='session').forEach(k=>localStorage.removeItem(k));render()}};
+document.getElementById('export-bookings').onclick=()=>{const rows=get(KEYS.bookings);const head=['Name','Phone','Email','Interest','Message','Created'];const csv=[head,...rows.map(x=>[x.name,x.phone,x.email,x.interest,x.message,x.createdAt])].map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='excellent-ct-bookings.csv';a.click();URL.revokeObjectURL(a.href)};
