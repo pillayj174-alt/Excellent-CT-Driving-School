@@ -31,3 +31,13 @@ V4 — Licence Departments:
 - Mapopane Licence Department
 - Added an "Inquire if you don't see your home town" WhatsApp CTA.
 - Added Licence Departments to the main navigation.
+
+OWNER PORTAL — TESTING
+- Open admin.html from the published website.
+- Owner login is configured for the requested email/password.
+- Dashboard manages locally stored bookings/enquiries, customer reviews, and quick site settings.
+- Reviews submitted publicly require owner approval before display.
+- Bookings submitted through the website are stored locally and also open WhatsApp.
+- Export Bookings downloads a CSV from the browser.
+
+IMPORTANT: This GitHub Pages version uses browser localStorage/sessionStorage so it can be tested without a backend. It is NOT production-grade authentication or a shared database: data is browser-specific and the login credentials are present in client-side JavaScript. For a real public owner system, connect the dashboard to a backend/auth service (e.g. Supabase/Firebase) before using it for live customer data.
